@@ -4,7 +4,8 @@
   "description": "convierte la metadata de Salesforce en un Excel",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +15,7 @@
   "dependencies": {
     "body-parser": "^1.20.0",
     "exceljs": "^4.3.0",
+    "formidable": "^2.0.1",
     "xlsx": "^0.18.5"
   }
 }
