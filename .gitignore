@@ -106,4 +106,4 @@ dist
 # Files
 *.xlsx
 public/Controller/workspace.code-workspace
-vscode
+/.vscode/
