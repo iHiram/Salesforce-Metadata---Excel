@@ -1,0 +1,19 @@
+{
+  "name": "convertmetatocsv",
+  "version": "1.0.0",
+  "description": "convierte la metadata de Salesforce en un Excel",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.18.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "exceljs": "^4.3.0",
+    "xlsx": "^0.18.5"
+  }
+}
