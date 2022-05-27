@@ -7,7 +7,7 @@ const bp = require('body-parser')
 let http = require('http');
 let formidable = require('formidable');
 let fs = require('fs');
-const port = 80;
+const port = process.env.PORT || 3000;
 var DataXLSL;
 
 
@@ -66,7 +66,7 @@ app.get('/', (req, res) => {
 
 //Comienza a escuchar el puerto definido 3000
 app.listen(port, () => {
-    console.log('Listen on the port 3000');
+    console.log('Listen on the port '+port);
 });
 
 async function Excel_c(Vcomlumns, Vdata) {
