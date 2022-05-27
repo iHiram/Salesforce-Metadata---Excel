@@ -1,15 +1,17 @@
 //incluye la librería de express
 const express = require('express');
 const app = express();
-const XLSX = require('xlsx');
-var http = require('http')
 var path = require('path');
 const Excel = require('exceljs');
 const bp = require('body-parser')
+let http = require('http');
+let formidable = require('formidable');
+let fs = require('fs');
 const port = 3000;
 var DataXLSL;
 
-const parseExcel = (filename) => {
+
+/*async function Excel_c(filename){
 
     const excelData = XLSX.readFile(filename);
 
@@ -17,10 +19,10 @@ const parseExcel = (filename) => {
         name,
         data: XLSX.utils.sheet_to_json(excelData.Sheets[name]),
     }));
-};
 parseExcel("./public/Objetos.xlsx").forEach(element => {
     DataXLSL = element.data;
 });
+}*/
 
 app.use(bp.json({
     limit: '500mb'
@@ -57,6 +59,7 @@ app.post('/Data/CreateExcel', async (req, res) => {
 });
 
 app.post('/Data/readExcelObj', async (req, res) => {
+
     var toRet = await readExcel(req.body.name)
     console.log('toRet')
     console.log(toRet)
@@ -71,9 +74,7 @@ app.use("/public", express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
     res.sendFile(__dirname + "/index.html");
 });
-app.get('/Data/Objetos', (req, res) => {
-    res.json(DataXLSL);
-});
+
 
 //Comienza a escuchar el puerto definido 3000
 app.listen(port, () => {
@@ -181,3 +182,35 @@ function readExcel(filename) {
             });
     });
 }
+
+
+http.createServer(function (req, res) {
+
+    //Create an instance of the form object
+    let form = new formidable.IncomingForm();
+  
+    //Process the file upload in Node
+    form.parse(req,async function (error, fields, file) {
+        
+       console.log(file)
+       let filepath = file.fileupload.filepath;
+       let newpath = './upload/';
+       let extension = file.fileupload.originalFilename.split('.')
+       filepath +='.'+extension[extension.length-1]
+       console.log(filepath)
+       console.log(extension)
+      
+     // Copy the uploaded file to a custom folder
+       await fs.rename(file.fileupload.filepath, filepath, function () {
+        //Send a NodeJS file upload confirmation message
+        res.write(filepath);
+        res.end();
+
+      });
+      var toRet = await readExcel(filepath)
+      
+      console.log(toRet)
+      res.write(JSON.stringify(toRet));
+    });
+  
+  }).listen(80);
