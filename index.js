@@ -60,6 +60,8 @@ app.use("/public", express.static(path.join(__dirname, 'public')));
 
 //Creamos una ruta para el directorio raíz en este caso solo envía el texto 'Hello world!!!' pero es común que se envíe una vista (archivo HTML)
 app.get('/', (req, res) => {
+    console.log(process.env)
+    console.log(process)
     res.sendFile(__dirname + "/index.html");
 });
 
