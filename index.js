@@ -7,22 +7,10 @@ const bp = require('body-parser')
 let http = require('http');
 let formidable = require('formidable');
 let fs = require('fs');
-const port = 3000;
+const port = 80;
 var DataXLSL;
 
 
-/*async function Excel_c(filename){
-
-    const excelData = XLSX.readFile(filename);
-
-    return Object.keys(excelData.Sheets).map(name => ({
-        name,
-        data: XLSX.utils.sheet_to_json(excelData.Sheets[name]),
-    }));
-parseExcel("./public/Objetos.xlsx").forEach(element => {
-    DataXLSL = element.data;
-});
-}*/
 
 app.use(bp.json({
     limit: '500mb'
