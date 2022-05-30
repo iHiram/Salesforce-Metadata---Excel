@@ -31,24 +31,14 @@
   </select>
   <select name="idioma" id="idioma">
     <option value=""></option>
-    <option value="-es">-es</option>
-    <option value="-en">-en</option>
+    <option value="-es">Espaniol</option>
+    <option value="-en">Ingles</option>
   </select>
   <br><br><br><br>
 
-  <h1>Folder upload</h1>
-
-<label for="folder">Select folder</label>
-<input type="file" id="folder" webkitdirectory multiple/>
-<br>
-<ul>
-</ul>
-<br><br><br><br>
-
-  <button onclick="onclicgetExcel()">Extraer EXCEL</button> 
-  <button onclick="clicConvertxmlToJson()">Convertir XML a JSON</button> 
    <button onclick="convert()">CREAR EXCEL</button>
 </body>
-
-
-</html>
+<br><br><br><br>
+<input id="fileupload" type="file" name="fileupload" />
+<button id="upload-button" onclick="uploadFile()" > Upload </button>
+</html> 

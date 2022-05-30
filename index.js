@@ -8,7 +8,42 @@ let http = require('http');
 let formidable = require('formidable');
 let fs = require('fs');
 const port = process.env.PORT || 3000;
-var DataXLSL;
+const production  = 'https://examplePage.com';
+const development = 'http://localhost:3000/';
+const secret = (process.env.NODE_ENV ? production : development);
+const clientID = (process.env.NODE_ENV ? production : development);
+const issuerBaseURL = (process.env.NODE_ENV ? production : development);
+const url = (process.env.NODE_ENV ? production : development);
+const { auth } = require('express-openid-connect');
+const { requiresAuth } = require('express-openid-connect');
+
+const config = {
+  authRequired: false,
+  auth0Logout: true,
+  secret: secret,
+  baseURL: url,
+  clientID: clientID,
+  issuerBaseURL: issuerBaseURL
+};
+
+// auth router attaches /login, /logout, and /callback routes to the baseURL
+app.use(auth(config));
+
+//informacion del login
+app.get('/profile', requiresAuth(), (req, res)z  => {
+    res.send(JSON.stringify(req.oidc.user));
+  });
+
+// req.isAuthenticated is provided from the auth router
+app.get('/', (req, res) => {
+  res.send(req.oidc.isAuthenticated() ? res.sendFile(__dirname + "/index.html") : 'Logged out');
+});
+
+/*Creamos una ruta para el directorio raíz en este caso solo envía el texto 'Hello world!!!' pero es común que se envíe una vista (archivo HTML)
+app.get('/', (req, res) => {
+ 
+    res.sendFile(__dirname + "/index.html");
+});*/
 
 console.log(process.env)
 console.log(process)
@@ -59,11 +94,7 @@ app.post('/Data/readExcelObj', async (req, res) => {
 
 app.use("/public", express.static(path.join(__dirname, 'public')));
 
-//Creamos una ruta para el directorio raíz en este caso solo envía el texto 'Hello world!!!' pero es común que se envíe una vista (archivo HTML)
-app.get('/', (req, res) => {
- 
-    res.sendFile(__dirname + "/index.html");
-});
+
 
 
 //Comienza a escuchar el puerto definido 3000
