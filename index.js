@@ -30,7 +30,7 @@ const config = {
 app.use(auth(config));
 
 //informacion del login
-app.get('/profile', requiresAuth(), (req, res)z  => {
+app.get('/profile', requiresAuth(), (req, res)  => {
     res.send(JSON.stringify(req.oidc.user));
   });
 
