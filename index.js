@@ -28,7 +28,6 @@ const config = {
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
 app.use(auth(config));
-app.use(express.static(join(__dirname, "public")));
 
 //informacion del login
 app.get('/profile', requiresAuth(), (req, res)  => {
