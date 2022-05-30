@@ -48,6 +48,22 @@
 
    <button onclick="convert()">CREAR EXCEL</button>
 
+
+   <br><br><br><br>
+   <div class="hidden" id="gated-content">
+    <p>
+      You're seeing this content because you're currently
+      <strong>logged in</strong>.
+    </p>
+    <label>
+      Access token:
+      <pre id="ipt-access-token"></pre>
+    </label>
+    <label>
+      User profile:
+      <pre id="ipt-user-profile"></pre>
+    </label>
+  </div>
 </body>
 <br><br><br><br>
 
@@ -56,20 +72,7 @@
 <button id="upload-button" onclick="uploadFile()" > Upload </button>
 
 
-<div class="hidden" id="gated-content">
-  <p>
-    You're seeing this content because you're currently
-    <strong>logged in</strong>.
-  </p>
-  <label>
-    Access token:
-    <pre id="ipt-access-token"></pre>
-  </label>
-  <label>
-    User profile:
-    <pre id="ipt-user-profile"></pre>
-  </label>
-</div>
+
 
 
 
