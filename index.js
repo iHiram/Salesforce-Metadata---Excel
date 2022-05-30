@@ -28,14 +28,19 @@ const config = {
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
 app.use(auth(config));
+app.use(express.static(join(__dirname, "public")));
 
 //informacion del login
 app.get('/profile', requiresAuth(), (req, res)  => {
     res.send(JSON.stringify(req.oidc.user));
   });
 
+  app.get("/auth_config.json", (req, res) => {
+    res.sendFile(join(__dirname, "auth_config.json"));
+  });
+
 // req.isAuthenticated is provided from the auth router
-app.get('/', (req, res) => {
+app.get('/*', (req, res) => {
   res.send(req.oidc.isAuthenticated() ? res.sendFile(__dirname + "/index.html") : 'Logged out');
 });
 
