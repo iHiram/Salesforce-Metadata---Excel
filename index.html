@@ -5,6 +5,8 @@
   <meta charset="utf-8">
   <title>HTML</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <script src="https://cdn.auth0.com/js/auth0-spa-js/1.13/auth0-spa-js.production.js"></script>
   <script
   src="https://code.jquery.com/jquery-3.6.0.min.js"
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -18,12 +20,20 @@
 </head>
 
 <body>
+
+  <h2>SPA Authentication Sample</h2>
+  <p>Welcome to our page!</p>
+  <button id="btn-login" disabled="true" onclick="login()">Log in</button>
+  <button id="btn-logout" disabled="true" onclick="logout()">Log out</button>
+
   <br><br><br><br>
   <label for="files">Selecciona la carptea con que contenga los objetos (.object/.objectTranslate):</label>
   <input type="file" id="files" name="files" webkitdirectory multiple><br><br>
   <br><br><br><br>
+
   <label for="files">Selecciona el archivo para seleccionar los objetos (xlsx):</label>
   <input type="file" id="objFile" name="objFile" ><br><br>
+
   <label for="filetype_label">Selecciona la extension del archivo</label>
   <select name="filetype" id="filetype">
     <option value=".object">.object</option>
@@ -37,8 +47,31 @@
   <br><br><br><br>
 
    <button onclick="convert()">CREAR EXCEL</button>
+
 </body>
 <br><br><br><br>
+
+
 <input id="fileupload" type="file" name="fileupload" />
 <button id="upload-button" onclick="uploadFile()" > Upload </button>
+
+
+<div class="hidden" id="gated-content">
+  <p>
+    You're seeing this content because you're currently
+    <strong>logged in</strong>.
+  </p>
+  <label>
+    Access token:
+    <pre id="ipt-access-token"></pre>
+  </label>
+  <label>
+    User profile:
+    <pre id="ipt-user-profile"></pre>
+  </label>
+</div>
+
+
+
+
 </html> 
