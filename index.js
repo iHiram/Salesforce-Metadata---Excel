@@ -14,8 +14,6 @@ const secret = (process.env.NODE_ENV ? production : development);
 const clientID = (process.env.NODE_ENV ? production : development);
 const issuerBaseURL = (process.env.NODE_ENV ? production : development);
 const url = (process.env.NODE_ENV ? production : development);
-const { auth } = require('express-openid-connect');
-const { requiresAuth } = require('express-openid-connect');
 
 const config = {
   authRequired: false,
@@ -25,18 +23,6 @@ const config = {
   clientID: clientID,
   issuerBaseURL: issuerBaseURL
 };
-
-// auth router attaches /login, /logout, and /callback routes to the baseURL
-app.use(auth(config));
-
-//informacion del login
-app.get('/profile', requiresAuth(), (req, res)  => {
-    res.send(JSON.stringify(req.oidc.user));
-  });
-
-  app.get("/auth_config.json", (req, res) => {
-    res.sendFile(join(__dirname, "auth_config.json"));
-  });
 
 // req.isAuthenticated is provided from the auth router
 app.get('/*', (req, res) => {
