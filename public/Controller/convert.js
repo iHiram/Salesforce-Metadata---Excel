@@ -2,7 +2,6 @@ var FilesName = [];
 var ArrayJSONXML = [];
 var ArrayObjToSend = [];
 var mapLabelApiname = {};
-var pathFilterobj='';
 var p1 = new Promise(async function (resolve, reject) {
   var pth = window.location.href;
   var url = pth + 'Data/Objetos';
@@ -239,3 +238,4 @@ console.log(result)
   }); 
 
 }
+
