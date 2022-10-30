@@ -14,8 +14,6 @@ const secret = (process.env.NODE_ENV ? production : development);
 const clientID = (process.env.NODE_ENV ? production : development);
 const issuerBaseURL = (process.env.NODE_ENV ? production : development);
 const url = (process.env.NODE_ENV ? production : development);
-const { auth } = require('express-openid-connect');
-const { requiresAuth } = require('express-openid-connect');
 
 const config = {
   authRequired: false,
@@ -26,25 +24,21 @@ const config = {
   issuerBaseURL: issuerBaseURL
 };
 
-// auth router attaches /login, /logout, and /callback routes to the baseURL
-app.use(auth(config));
+/*req.isAuthenticated is provided from the auth router
+app.get('/*', (req, res) => {
+    res.send(res.sendFile(__dirname + "/index.html"));
+});*/
 
-//informacion del login
-app.get('/profile', requiresAuth(), (req, res)z  => {
-    res.send(JSON.stringify(req.oidc.user));
-  });
-
-// req.isAuthenticated is provided from the auth router
-app.get('/', (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? res.sendFile(__dirname + "/index.html") : 'Logged out');
-});
-
-/*Creamos una ruta para el directorio raíz en este caso solo envía el texto 'Hello world!!!' pero es común que se envíe una vista (archivo HTML)
+//Creamos una ruta para el directorio raíz en este caso solo envía el texto 'Hello world!!!' pero es común que se envíe una vista (archivo HTML)
 app.get('/', (req, res) => {
  
     res.sendFile(__dirname + "/index.html");
-});*/
+});
 
+process.on("SIGINT", function() {
+    process.exit();
+  });
+  
 console.log(process.env)
 console.log(process)
 
