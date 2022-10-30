@@ -24,18 +24,16 @@ const config = {
   issuerBaseURL: issuerBaseURL
 };
 
-// req.isAuthenticated is provided from the auth router
+/*req.isAuthenticated is provided from the auth router
 app.get('/*', (req, res) => {
-  //  res.send(req.oidc.isAuthenticated() ? res.sendFile(__dirname + "/index.html") : 'Logged out');
- // res.send(req.oidc.isAuthenticated() ? res.sendFile(__dirname + "/index.html") : res.sendFile(__dirname + "/public/views/login.html")     );
     res.send(res.sendFile(__dirname + "/index.html"));
-});
+});*/
 
-/*Creamos una ruta para el directorio raíz en este caso solo envía el texto 'Hello world!!!' pero es común que se envíe una vista (archivo HTML)
+//Creamos una ruta para el directorio raíz en este caso solo envía el texto 'Hello world!!!' pero es común que se envíe una vista (archivo HTML)
 app.get('/', (req, res) => {
  
     res.sendFile(__dirname + "/index.html");
-});*/
+});
 
 process.on("SIGINT", function() {
     process.exit();
